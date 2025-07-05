@@ -33,7 +33,7 @@ import { RiTakeawayLine } from "react-icons/ri";
 
 export function AllBooks() {
   const { data: bookData, isLoading } = useGetBooksQuery(undefined);
-  const data = bookData?.data;
+  const data = bookData?.data ?? [];
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -171,6 +171,15 @@ export function AllBooks() {
   if (isLoading) {
     return <Loader />;
   }
+
+  if (!data || data.length === 0) {
+    return (
+      <div className="py-10 text-center text-lg font-semibold text-gray-500">
+        No books added yet.
+      </div>
+    );
+  }
+
 
   return (
     <div className="w-full">
