@@ -83,14 +83,14 @@ export function AddBook() {
   }
 
   return (
-    <section className="max-w-2xl mx-auto p-6 bg-white rounded-xl shadow-md">
-      <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
+    <section className="mx-auto mt-10 max-w-2xl rounded-xl border bg-white p-6 shadow-md">
+      <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
         Add New Book
       </h2>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid gap-4 md:grid-cols-2">
             <FormField
               control={form.control}
               name="title"
@@ -98,7 +98,7 @@ export function AddBook() {
                 <FormItem>
                   <FormLabel>Title</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter book title" {...field} />
+                    <Input placeholder="Enter Book Title" {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -111,7 +111,7 @@ export function AddBook() {
                 <FormItem>
                   <FormLabel>Author</FormLabel>
                   <FormControl>
-                    <Input placeholder="Enter author's name" {...field} />
+                    <Input placeholder="Enter Author Name" {...field} />
                   </FormControl>
                 </FormItem>
               )}
@@ -124,7 +124,7 @@ export function AddBook() {
                 <FormItem>
                   <FormLabel>Genre</FormLabel>
                   <Select onValueChange={field.onChange} value={field.value}>
-                    <FormControl>
+                    <FormControl className="w-full">
                       <SelectTrigger>
                         <SelectValue placeholder="Select Genre" />
                       </SelectTrigger>
@@ -180,8 +180,9 @@ export function AddBook() {
                   <FormLabel>Availability</FormLabel>
                   <Select
                     onValueChange={field.onChange}
-                    value={String(field.value)}>
-                    <FormControl>
+                    value={String(field.value)}
+                  >
+                    <FormControl className="w-full">
                       <SelectTrigger>
                         <SelectValue placeholder="Select availability" />
                       </SelectTrigger>
@@ -209,7 +210,7 @@ export function AddBook() {
             )}
           />
 
-          <Button type="submit" className="w-full mt-4">
+          <Button type="submit" className="mt-4 w-full">
             Add Book
           </Button>
         </form>

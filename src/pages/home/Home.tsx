@@ -3,7 +3,6 @@ import { useGetBooksQuery } from "@/redux/api/bookApi";
 
 function Home() {
   const { data, isLoading, isError } = useGetBooksQuery(undefined);
-  console.log(data, isLoading, isError);
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Something went wrong.</p>;

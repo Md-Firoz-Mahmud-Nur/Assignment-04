@@ -32,6 +32,15 @@ export function EditBook() {
 
   const [updateBook] = useUpdateBookMutation();
 
+  const GENRES = [
+    "FICTION",
+    "NON_FICTION",
+    "SCIENCE",
+    "HISTORY",
+    "BIOGRAPHY",
+    "FANTASY",
+  ] as const;
+
   const form = useForm<AddBookForm>({
     defaultValues: {
       title: "",
@@ -59,10 +68,13 @@ export function EditBook() {
   }, [book, form]);
 
   async function onSubmit(data: AddBookForm) {
+    console.log(data);
+
     const updatedData = { ...data, copies: Number(data.copies) };
 
     try {
-      const res = await updateBook({ bookId: id, updatedData });
+      const res = await updateBook({ id, data: updatedData });
+      console.log(res);
 
       if (res?.data?.success) {
         toast.success(`${res.data.message} `);
@@ -77,80 +89,129 @@ export function EditBook() {
   if (isLoading) return <Loader />;
 
   return (
-    <section className="max-w-xl mx-auto p-6 bg-white shadow-md rounded-md">
-      <h2 className="text-2xl font-semibold text-center mb-6">Edit Book</h2>
+    <section className="mx-auto mt-10 max-w-xl rounded-md border bg-white p-6 shadow-md">
+      <h2 className="mb-6 text-center text-2xl font-semibold text-gray-800">
+        Edit Book
+      </h2>
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-          {/* Title */}
-          <FormField
-            control={form.control}
-            name="title"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Title</FormLabel>
-                <FormControl>
-                  <Input placeholder="Book Title" {...field} required />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
-          {/* Author */}
-          <FormField
-            control={form.control}
-            name="author"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Author</FormLabel>
-                <FormControl>
-                  <Input placeholder="Author Name" {...field} required />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
-          {/* Genre */}
-          <FormField
-            control={form.control}
-            name="genre"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Genre</FormLabel>
-                <Select onValueChange={field.onChange} value={field.value}>
-                  <FormControl className="w-full">
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select genre" />
-                    </SelectTrigger>
+          <div className="grid gap-4 md:grid-cols-2">
+            <FormField
+              control={form.control}
+              name="title"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Title</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Enter Book Title" {...field} required />
                   </FormControl>
-                  <SelectContent>
-                    <SelectItem value="FICTION">FICTION</SelectItem>
-                    <SelectItem value="NON_FICTION">NON FICTION</SelectItem>
-                    <SelectItem value="SCIENCE">SCIENCE</SelectItem>
-                    <SelectItem value="HISTORY">HISTORY</SelectItem>
-                    <SelectItem value="BIOGRAPHY">BIOGRAPHY</SelectItem>
-                    <SelectItem value="FANTASY">FANTASY</SelectItem>
-                  </SelectContent>
-                </Select>
-              </FormItem>
-            )}
-          />
+                </FormItem>
+              )}
+            />
 
-          {/* ISBN */}
-          <FormField
-            control={form.control}
-            name="isbn"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>ISBN</FormLabel>
-                <FormControl>
-                  <Input placeholder="ISBN Number" {...field} required />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+            <FormField
+              control={form.control}
+              name="author"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Author</FormLabel>
+                  <FormControl>
+                    <Input
+                      placeholder="Enter Author Name"
+                      {...field}
+                      required
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
 
-          {/* Description */}
+            <FormField
+              control={form.control}
+              name="genre"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Genre</FormLabel>
+                  <Select
+                    required
+                    onValueChange={field.onChange}
+                    value={field.value || undefined}
+                    defaultValue={book?.genre || undefined}
+                  >
+                    <FormControl className="w-full">
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select genre" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {GENRES.map((genre) => (
+                        <SelectItem key={genre} value={genre}>
+                          {genre}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="isbn"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>ISBN</FormLabel>
+                  <FormControl>
+                    <Input placeholder="ISBN Number" {...field} required />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="copies"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Copies</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      placeholder="Available copies"
+                      {...field}
+                      required
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="available"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Availability</FormLabel>
+                  <Select
+                    onValueChange={(val) => field.onChange(val === "true")}
+                    value={String(field.value)}
+                  >
+                    <FormControl className="w-full">
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Availability" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="true">Available</SelectItem>
+                      <SelectItem value="false">Unavailable</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </FormItem>
+              )}
+            />
+          </div>
+
           <FormField
             control={form.control}
             name="description"
@@ -158,58 +219,16 @@ export function EditBook() {
               <FormItem>
                 <FormLabel>Description</FormLabel>
                 <FormControl>
-                  <Input placeholder="Brief Description" {...field} required />
+                  <Input placeholder="Short description" {...field} required />
                 </FormControl>
-              </FormItem>
-            )}
-          />
-
-          {/* Copies */}
-          <FormField
-            control={form.control}
-            name="copies"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Copies</FormLabel>
-                <FormControl>
-                  <Input
-                    type="number"
-                    placeholder="Number of copies"
-                    {...field}
-                    required
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
-
-          {/* Availability */}
-          <FormField
-            control={form.control}
-            name="available"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Availability</FormLabel>
-                <Select
-                  onValueChange={(val) => field.onChange(val === "true")}
-                  value={String(field.value)}>
-                  <FormControl className="w-full">
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select Availability" />
-                    </SelectTrigger>
-                  </FormControl>
-                  <SelectContent>
-                    <SelectItem value="true">Available</SelectItem>
-                    <SelectItem value="false">Unavailable</SelectItem>
-                  </SelectContent>
-                </Select>
               </FormItem>
             )}
           />
 
           <Button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+            className="w-full bg-blue-600 text-white hover:bg-blue-700"
+          >
             Update Book
           </Button>
         </form>
