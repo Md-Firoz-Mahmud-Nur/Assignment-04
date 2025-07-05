@@ -11,7 +11,21 @@ export const bookApi = baseApi.injectEndpoints({
         body: book,
       }),
     }),
+    deleteBook: builder.mutation({
+      query: (bookId) => ({
+        url: `/books/${bookId}`,
+        method: "DELETE",
+      }),
+    }),
+    createBorrow: builder.mutation({
+      query: (borrowData) => ({
+        url: `/borrow`,
+        method: "POST",
+        body: borrowData,
+      }),
+    }),
   }),
 });
 
-export const { useGetBooksQuery,useAddBookMutation } = bookApi;
+export const { useGetBooksQuery, useAddBookMutation, useDeleteBookMutation,useCreateBorrowMutation } =
+  bookApi;
