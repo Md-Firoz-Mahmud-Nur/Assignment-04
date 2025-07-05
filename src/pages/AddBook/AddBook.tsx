@@ -57,7 +57,8 @@ export function AddBook() {
     const submitData = {
       ...data,
       copies: Number(data.copies),
-      available: data.available === "true",
+      // available: data.available === "true",
+      available: String(data.available) === "true",
     };
 
     try {

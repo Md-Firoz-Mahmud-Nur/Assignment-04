@@ -4,23 +4,23 @@ BookHive is a modern, full-stack Library Management System built using the MERN 
 
 
 ## Live Site URL
-Visit the live client site at [Client Side](https://)
+Visit the live client site at [Client Side](https://assignment-04-dusky.vercel.app/)
 Visit the live server site at [Server Side](https://assignment-3-five-iota.vercel.app/)
 
 ## Server Side Github Link
 [Server Code](https://github.com/Md-Firoz-Mahmud-Nur/l2-assignment-3.git)
 
 ## Key Features
-- **Book Operations:** 
+- **Book Operations:**
   Add, update, delete, and retrieve books
   Includes metadata such as title, author, genre, ISBN, and availability status
 
-- **Borrowing Functionality:** 
+- **Borrowing Functionality:**
   Allows users to borrow books
   Automatically tracks due dates
   Handles inventory updates and availability
-  
-- **Inventory and State Handling:** 
+
+- **Inventory and State Handling:**
   Tracks the total number of book copies
   Reflects real-time borrowing status through backend logic
 

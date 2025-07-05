@@ -23,7 +23,7 @@ function Home() {
 
   return (
     <div className="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 md:grid-cols-3 container mx-auto">
-      {books.map((book) => (
+      {books.map((book:any) => (
         <Card key={book._id} className="shadow-lg transition hover:shadow-xl">
           <CardHeader>
             <CardTitle>{book.title}</CardTitle>
