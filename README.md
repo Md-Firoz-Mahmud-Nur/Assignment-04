@@ -1,69 +1,66 @@
-# React + TypeScript + Vite
+# BookHive - Library Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+BookHive is a modern, full-stack Library Management System built using the MERN stack with TypeScript. It is designed to manage books, borrowing records, and availability tracking in a streamlined and efficient manner. The system follows a modular and layered architecture, with clearly separated responsibilities for UI, state, and data handling.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Site URL
+Visit the live client site at [Client Side](https://)
+Visit the live server site at [Server Side](https://assignment-3-five-iota.vercel.app/)
 
-## Expanding the ESLint configuration
+## Server Side Github Link
+[Server Code](https://github.com/Md-Firoz-Mahmud-Nur/l2-assignment-3.git)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Key Features
+- **Book Operations:** 
+  Add, update, delete, and retrieve books
+  Includes metadata such as title, author, genre, ISBN, and availability status
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Borrowing Functionality:** 
+  Allows users to borrow books
+  Automatically tracks due dates
+  Handles inventory updates and availability
+  
+- **Inventory and State Handling:** 
+  Tracks the total number of book copies
+  Reflects real-time borrowing status through backend logic
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+The system is designed as a backend service that can be consumed by frontend applications, mobile apps, or other services requiring library management functionality.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Technology Stack
+- React with TypeScript
+- Redux Toolkit & RTK Query for state and API interaction
+- Tailwind CSS and Shadcn UI for design and responsiveness
+- Vite for development and production builds
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## API Structure
+- `/api/books` – Book CRUD endpoints
+- `/api/borrow` – Borrowing operations
+
+
+## How to Start This Application
+
+1. **Clone the Repositories:**
+    ```sh
+    https://github.com/Md-Firoz-Mahmud-Nur/Assignment-04.git
+    cd Assignment-04
+    ```
+
+2. **Install Dependencies:**
+    ```sh
+    npm install
+    ```
+
+3. **Start the Development Server:**
+    ```sh
+    npm run dev
+    ```
+
+
+## Environment Variables:
+  - Create a `.env` file in the root of your client project and add the following variables:
+
+
+## Contributing
+If you'd like to contribute to this project, please fork the repository and use a feature branch. Pull requests are welcome.
