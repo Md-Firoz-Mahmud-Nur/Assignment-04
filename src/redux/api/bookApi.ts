@@ -44,6 +44,7 @@ export const bookApi = baseApi.injectEndpoints({
       query: () => "/borrow",
       providesTags: ["borrow"],
     }),
+
   }),
 });
 
@@ -54,4 +55,5 @@ export const {
   useCreateBorrowMutation,
   useUpdateBookMutation,
   useGetSingleBookQuery,
+  useGetBorrowsQuery
 } = bookApi;

@@ -26,3 +26,16 @@ export type Book = {
   createdAt: string;
   updatedAt: string;
 };
+
+export type BorrowBook = {
+  totalQuantity: number;
+  book: { isbn: string; title: string }[];
+};
+
+export type ShowBorrowBook = {
+  totalQuantity: number;
+  book: {
+    isbn: string;
+    title: string;
+  };
+};

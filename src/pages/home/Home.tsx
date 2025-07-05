@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useGetBooksQuery } from "@/redux/api/bookApi";
-import * as React from "react";
 
 function Home() {
   const { data, isLoading } = useGetBooksQuery(undefined);
