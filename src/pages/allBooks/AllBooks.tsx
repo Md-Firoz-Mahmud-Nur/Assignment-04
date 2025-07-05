@@ -37,7 +37,7 @@ export function AllBooks() {
 
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
+    [],
   );
   const [rowSelection, setRowSelection] = React.useState({});
 
@@ -122,7 +122,8 @@ export function AllBooks() {
             <Link to={`/edit-book/${currentBook?._id}`}>
               <Button
                 size="sm"
-                className="bg-blue-600 text-white hover:bg-blue-700">
+                className="bg-blue-600 text-white hover:bg-blue-700"
+              >
                 <FaEdit></FaEdit>
               </Button>
             </Link>
@@ -133,7 +134,8 @@ export function AllBooks() {
               trigger={
                 <Button
                   size="sm"
-                  className="bg-yellow-500 text-black hover:bg-yellow-600">
+                  className="bg-yellow-500 text-black hover:bg-yellow-600"
+                >
                   <RiTakeawayLine></RiTakeawayLine>
                 </Button>
               }
@@ -142,7 +144,8 @@ export function AllBooks() {
             <Button
               size="sm"
               className="bg-red-600 text-white hover:bg-red-700"
-              onClick={() => handleDelete(currentBook?._id)}>
+              onClick={() => handleDelete(currentBook?._id)}
+            >
               <MdOutlineDeleteForever></MdOutlineDeleteForever>
             </Button>
           </div>
@@ -180,9 +183,8 @@ export function AllBooks() {
     );
   }
 
-
   return (
-    <div className="w-full">
+    <div className="container mx-auto">
       {/* Search bar */}
       <div className="flex items-center justify-between py-4">
         <Input
@@ -207,7 +209,7 @@ export function AllBooks() {
                       ? null
                       : flexRender(
                           header.column.columnDef.header,
-                          header.getContext()
+                          header.getContext(),
                         )}
                   </TableHead>
                 ))}
@@ -219,12 +221,13 @@ export function AllBooks() {
               table.getRowModel().rows.map((row) => (
                 <TableRow
                   key={row.id}
-                  data-state={row.getIsSelected() && "selected"}>
+                  data-state={row.getIsSelected() && "selected"}
+                >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
-                        cell.getContext()
+                        cell.getContext(),
                       )}
                     </TableCell>
                   ))}
@@ -234,7 +237,8 @@ export function AllBooks() {
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center">
+                  className="h-24 text-center"
+                >
                   No results.
                 </TableCell>
               </TableRow>
@@ -244,20 +248,22 @@ export function AllBooks() {
       </div>
 
       {/* Footer */}
-      <div className="flex items-center justify-between py-4 text-sm text-muted-foreground ">
-        <div className="space-x-2 mx-auto">
+      <div className="text-muted-foreground flex items-center justify-between py-4 text-sm">
+        <div className="mx-auto space-x-2">
           <Button
             variant="outline"
             size="sm"
             onClick={() => table.previousPage()}
-            disabled={!table.getCanPreviousPage()}>
+            disabled={!table.getCanPreviousPage()}
+          >
             Previous
           </Button>
           <Button
             variant="outline"
             size="sm"
             onClick={() => table.nextPage()}
-            disabled={!table.getCanNextPage()}>
+            disabled={!table.getCanNextPage()}
+          >
             Next
           </Button>
         </div>
