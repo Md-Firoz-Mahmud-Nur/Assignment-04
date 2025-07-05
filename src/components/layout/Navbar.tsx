@@ -1,6 +1,5 @@
 import { NavLink } from "react-router";
 import Logo from "../../assets/BookHive.jpeg";
-import { ModeToggle } from "../ModeToggle";
 
 export default function Navbar() {
   const navigationLinks = [
@@ -32,10 +31,6 @@ export default function Navbar() {
               {link.name}
             </NavLink>
           ))}
-        </div>
-
-        <div className="ml-auto md:ml-0">
-          <ModeToggle />
         </div>
       </nav>
     </header>

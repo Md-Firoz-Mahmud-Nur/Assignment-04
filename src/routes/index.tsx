@@ -1,6 +1,7 @@
 import App from "@/App";
 import { AddBook } from "@/pages/AddBook/AddBook";
 import { AllBooks } from "@/pages/allBooks/AllBooks";
+import { EditBook } from "@/pages/bookEdit/EditBook";
 import Home from "@/pages/home/Home";
 import { createBrowserRouter } from "react-router";
 
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/borrow-summary",
         element: <div>Borrow Summary</div>,
+      },
+      {
+        path: "edit-book/:id",
+        element: <EditBook></EditBook>,
       },
     ],
   },
