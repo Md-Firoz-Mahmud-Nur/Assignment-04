@@ -11,6 +11,9 @@ export default function Navbar() {
       <Link className="hover:underline" to="/books">
         Books
       </Link>
+      <Link className="hover:underline" to="/create-book">
+        Add Book
+      </Link>
       <div className="ml-auto">
         <ModeToggle />
       </div>
