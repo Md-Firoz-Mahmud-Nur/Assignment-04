@@ -156,7 +156,7 @@ export function AllBooks() {
               trigger={
                 <Button
                   size="sm"
-                  className="bg-yellow-500 text-white hover:bg-yellow-600">
+                  className="bg-yellow-500 text-black hover:bg-yellow-600">
                   <RiTakeawayLine></RiTakeawayLine>
                 </Button>
               }

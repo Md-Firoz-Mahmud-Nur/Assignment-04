@@ -29,21 +29,22 @@ import { useCreateBorrowMutation } from "@/redux/api/bookApi";
 
 import { formatDate } from "date-fns";
 import { CalendarIcon, ShoppingBag } from "lucide-react";
-import * as React from "react";
 import { useForm } from "react-hook-form";
 import { RiTakeawayLine } from "react-icons/ri";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+import type { ReactNode } from "react";
 
-type TBorrorModal = {
+type BorrowModal = {
   bookId: string;
   isHome: boolean;
+  trigger?: ReactNode;
 };
-type TBorrorwFormData = {
+type BorrowFormData = {
   quantity: string;
   dueDate: string;
 };
-export function BorrowModal({ bookId, isHome }: TBorrorModal) {
+export function BorrowModal({ bookId, isHome, trigger }: BorrowModal) {
   const navigate = useNavigate();
 
   const [createBorrow] = useCreateBorrowMutation();
@@ -54,7 +55,7 @@ export function BorrowModal({ bookId, isHome }: TBorrorModal) {
     },
   });
 
-  async function onSubmit(data: TBorrorwFormData) {
+  async function onSubmit(data: BorrowFormData) {
     const borrowData = { ...data, book: bookId };
     try {
       const res = await createBorrow(borrowData);
@@ -77,16 +78,17 @@ export function BorrowModal({ bookId, isHome }: TBorrorModal) {
     <Dialog>
       <form>
         <DialogTrigger asChild>
-          {isHome ? (
+          {trigger ? (
+            trigger
+          ) : isHome ? (
             <p>
-              {" "}
               <ShoppingBag />
             </p>
           ) : (
             <Button
               size="sm"
-              className="bg-yellow-500 text-white hover:bg-yellow-600 hover:cursor-pointer">
-              <RiTakeawayLine></RiTakeawayLine>
+              className="bg-yellow-500 text-black hover:bg-yellow-600 hover:cursor-pointer">
+              <RiTakeawayLine />
             </Button>
           )}
         </DialogTrigger>
