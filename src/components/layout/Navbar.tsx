@@ -9,10 +9,13 @@ export default function Navbar() {
         <img src={Logo} alt="BookHive" className="w-8 h-8 mr-2" /> BookHive
       </Link>
       <Link className="hover:underline" to="/books">
-        Books
+        All Books
       </Link>
       <Link className="hover:underline" to="/create-book">
         Add Book
+      </Link>
+      <Link className="hover:underline" to="/borrow-summary">
+        Borrow Summary
       </Link>
       <div className="ml-auto">
         <ModeToggle />

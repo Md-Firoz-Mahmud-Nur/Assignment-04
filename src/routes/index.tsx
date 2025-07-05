@@ -20,6 +20,10 @@ const router = createBrowserRouter([
         path: "/create-book",
         element: <AddBook></AddBook>,
       },
+      {
+        path: "/borrow-summary",
+        element: <div>Borrow Summary</div>,
+      },
     ],
   },
 ]);
