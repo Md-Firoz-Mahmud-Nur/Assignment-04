@@ -52,12 +52,11 @@ export function AddBook() {
 
   async function onSubmit(data: AddBookForm) {
     const submitData = { ...data, copies: Number(data.copies) };
-    console.log("book create er data is ", submitData);
     try {
       const res = await createBook(submitData);
 
       if ("data" in res && res?.data?.success) {
-        toast.success(`${res?.data?.message},  😍`);
+        toast.success(`${res?.data?.message}`);
         navigate("/books");
       } else if (
         "error" in res &&
@@ -66,12 +65,12 @@ export function AddBook() {
         "data" in res.error
       ) {
         const error = res.error as RTKQueryError;
-        toast.error(`${error.data?.message ?? "An error occurred"} 😒`);
+        toast.error(`${error.data?.message ?? "An error occurred"}`);
       } else {
-        toast.error("An error occurred 😒");
+        toast.error("An error occurred");
       }
     } catch (error) {
-      console.log("error is in catch ", error);
+      console.log("error", error);
     }
   }
 
